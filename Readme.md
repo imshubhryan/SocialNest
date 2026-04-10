@@ -1,61 +1,89 @@
-# 📸 SocialNest (Backend + Frontend)
+# 🌐 SocialNest  
+### 🚀 Full Stack Social Media Application
 
-A full-stack Social Media like application built with **Node.js, Express, MongoDB** (backend) and **React** (frontend - in progress).
+A modern full-stack social media app built with **Node.js, Express, MongoDB** and **React (Vite)**.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-### 🔹 Backend (Completed)
+### 🔐 Backend (Completed)
+- 🧑‍💻 User Authentication (Login / Register with JWT)
+- 🍪 Secure Auth using **HTTP-only Cookies**
+- 🤝 Follow / Unfollow system
+- 📩 Follow Request System (Pending / Accepted / Rejected)
+- ❤️ Like / Unlike Posts (Toggle Logic)
+- 🛡️ Protected Routes (Middleware)
+- ⚡ MongoDB Indexing (No duplicate likes/follows)
+- 🚨 Error Handling & Validation
 
-* User Authentication (Login / Signup)
-* Follow / Unfollow system
-* Follow Request (Pending / Accepted / Rejected)
-* Like / Unlike Posts
-* Unique constraints (No duplicate likes/follows)
-* Proper error handling & validations
+---
 
-### 🔹 Frontend (In Progress)
+### 🎨 Frontend (In Progress)
+- ⚛️ React + Vite setup
+- 🔐 Login / Register UI
+- 🔗 API Integration using Axios
+- 🧭 Routing (React Router)
+- 🎨 SCSS / Tailwind Styling
+- 📱 Responsive Design
 
-* React-based UI
-* Cards for user profiles
-* Feed UI (posts, likes, follow system)
-* Responsive design using Tailwind CSS
+**Upcoming 🚧**
+- 📰 Feed UI (Posts)
+- 👤 Profile Page
+- 🔔 Notifications
+- 💬 Comments System
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Backend:
+### 🧠 Backend
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- JWT Authentication
+- Cookies (httpOnly)
 
-* Node.js
-* Express.js
-* MongoDB (Mongoose)
-* JWT Authentication
-
-### Frontend:
-
-* React.js
-* Tailwind CSS
+### 🎯 Frontend
+- React.js (Vite)
+- React Router
+- Axios
+- SCSS / Tailwind CSS
 
 ---
+
+
 
 ## 📁 Project Structure
 
 ```
-Insta/
+SocialNest/
+├── Backend/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── middlewares/
+│   │   └── config/
+│   ├── postman/
+│   ├── server.js
+│   ├── package.json
+│   └── .env
 │
-├── src/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   └── config/
+├── Frontend/
+│   ├── src/
+│   │   ├── features/
+│   │   │   └── auth/
+│   │   │       ├── pages/
+│   │   │       └── style/
+│   │   ├── routes.jsx
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── public/
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
 │
-├── postman/
-│   └── insta-api.postman_collection.json
-│
-├── package.json
 └── README.md
 ```
 
@@ -65,13 +93,12 @@ Insta/
 
 ```bash
 # Clone repo
-git clone <your-repo-link>
+## ⚙️ Installation & Setup
 
-# Install dependencies
-npm install
-
-# Run server
-npm start
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/imshubhryan/SocialNest.git
+cd SocialNest
 ```
 
 ---
