@@ -1,7 +1,7 @@
 const userModel = require("../models/user.model");
-const bcrypt = require('bcryptjs')
+const bcrypt = require("bcryptjs");
+const { response } = require("express");
 const jwt = require("jsonwebtoken");
-
 
 const registerController = async (req, res) => {
   const { email, username, password, bio, profileImage } = req.body;
@@ -29,7 +29,7 @@ const registerController = async (req, res) => {
     });
   }
 
-  const hash = await bcrypt.hash(password, 10)
+  const hash = await bcrypt.hash(password, 10);
   const user = await userModel.create({
     username,
     email,
@@ -45,7 +45,7 @@ const registerController = async (req, res) => {
   const token = jwt.sign(
     {
       id: user._id,
-      username:user.username
+      username: user.username,
     },
     process.env.JWT_SECRET,
     { expiresIn: "1d" },
@@ -62,11 +62,9 @@ const registerController = async (req, res) => {
       profileImage: user.profileImage,
     },
   });
-}
+};
 
-
-
-const loginController = async(req, res) => {
+const loginController = async (req, res) => {
   const { username, email, password } = req.body;
 
   // ya to email pass se login ya username pass se login
@@ -79,8 +77,7 @@ const loginController = async(req, res) => {
     });
   }
 
-  
-  const isPasswordValid = await bcrypt.compare(password, user.password)
+  const isPasswordValid = await bcrypt.compare(password, user.password);
 
   if (!isPasswordValid) {
     return res.status(401).json({
@@ -91,27 +88,46 @@ const loginController = async(req, res) => {
   const token = jwt.sign(
     {
       id: user._id,
-      username:user.username
+      username: user.username,
     },
     process.env.JWT_SECRET,
     { expiresIn: "1d" },
   );
 
-
   res.cookie("token", token);
-res.status(200).json({
-  message: "Login Successfully",
-  user:{
-    username: user.username,
-    email: user.email,
-    bio: user.bio,
-    profileImage: user.profileImage
-  }
-});
-}
+  res.status(200).json({
+    message: "Login Successfully",
+    user: {
+      username: user.username,
+      email: user.email,
+      bio: user.bio,
+      profileImage: user.profileImage,
+    },
+  });
+};
 
+const getMEController = async (req, res) => {
+  const userId = req.user.id;
+
+  const user = await userModel.findById(userId);
+
+  if (!user) {
+    return res.status(404).json({
+      message: "User Not found",
+    });
+  }
+  res.status(200).json({
+    user: {
+      username: user.username,
+      email: user.email,
+      bio: user.bio,
+      profileImage: user.profileImage,
+    },
+  });
+};
 
 module.exports = {
-    registerController,
-    loginController
-}
+  registerController,
+  loginController,
+  getMEController,
+};
