@@ -18,7 +18,7 @@ main{
         flex-direction: column;
         gap: 1rem;
 
-        input,button{
+        input{
             border: none;
             outline: none;
             padding-inline: 1.5rem;
@@ -26,11 +26,7 @@ main{
             border-radius: 1rem;
         }
 
-        button{
-            background-color: #b82e2e;
-            color: whitesmoke;
-            cursor: pointer;
-        }
+        
     }
     .toggleAuthForm{
         color: rgb(135, 135, 180);

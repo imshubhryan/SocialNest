@@ -32,7 +32,7 @@ export const login = async (username, password) => {
 
 export const getMe = async()=>{
     try{
-        const response = await api.get('/get-me')
+        const response = await api.get('/api/auth/get-me')
         return response.data
     }catch(err){
         throw err

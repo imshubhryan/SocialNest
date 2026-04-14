@@ -42,13 +42,13 @@ const Register = () => {
             name="password"
             placeholder="Enter your password"
           />
-          <button>Register</button>
+          <button className="button primary-button">Register</button>
         </form>
         <p>
-          Already have an account?{" "}
+          Already have an account?
           <Link className="toggleAuthForm" to="/login">
             Login
-          </Link>{" "}
+          </Link>
         </p>
       </div>
     </main>
