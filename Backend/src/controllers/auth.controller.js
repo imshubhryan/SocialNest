@@ -70,7 +70,7 @@ const loginController = async (req, res) => {
   // ya to email pass se login ya username pass se login
   const user = await userModel.findOne({
     $or: [{ username: username }, { email: email }],
-  });
+  }).select("+password");
   if (!user) {
     return res.status(404).json({
       message: "User not found",
