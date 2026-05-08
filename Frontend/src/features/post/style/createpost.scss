@@ -1,8 +1,137 @@
-.post-image-label{
-    background-color: #fff;
-    color: black;
-    padding-inline: 1rem;
-    padding-block: 0.5rem;
-    border-radius: 1rem;
-    cursor: pointer;
+$primary: #C2185B;
+$primary-light: #E91E63;
+$bg-cream: #FFF5F0;
+$bg-card: #FFFFFF;
+$bg-input: #F5E6E0;
+$text-dark: #2D2D2D;
+$text-muted: #888;
+
+.create-post-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+
+  .create-post-card {
+    width: 100%;
+    max-width: 500px;
+    background: $bg-card;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 4px 30px rgba(194,24,91,0.08);
+    margin-top: 1rem;
+    animation: fadeIn 0.4s ease;
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: $text-dark;
+      margin-bottom: 1.5rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .image-upload-area {
+      border: 2px dashed rgba(194,24,91,0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: rgba(194,24,91,0.02);
+
+      &:hover {
+        border-color: $primary;
+        background: rgba(194,24,91,0.05);
+      }
+
+      &.has-preview {
+        padding: 0;
+        border: none;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          max-height: 350px;
+          object-fit: cover;
+          border-radius: 16px;
+        }
+      }
+
+      .upload-icon {
+        color: $primary;
+        opacity: 0.6;
+      }
+
+      .upload-text {
+        font-size: 0.9rem;
+        color: $text-muted;
+        font-weight: 500;
+      }
+
+      .upload-hint {
+        font-size: 0.78rem;
+        color: #bbb;
+      }
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+
+      label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: $text-dark;
+      }
+
+      textarea, input {
+        border: none;
+        outline: none;
+        background: $bg-input;
+        padding: 0.85rem 1rem;
+        border-radius: 14px;
+        font-size: 0.9rem;
+        font-family: 'Inter', sans-serif;
+        color: $text-dark;
+        resize: none;
+        transition: box-shadow 0.2s;
+
+        &:focus {
+          box-shadow: 0 0 0 2px rgba(194,24,91,0.2);
+        }
+
+        &::placeholder {
+          color: #C0A8A0;
+        }
+      }
+
+      textarea {
+        min-height: 80px;
+      }
+    }
+
+    .create-post-btn {
+      width: 100%;
+      padding: 0.9rem;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

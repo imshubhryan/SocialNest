@@ -1,45 +1,29 @@
-const express = require('express')
-const postRouter = express.Router()
-const postController = require('../controllers/post.controller')
-const multer = require('multer')
-const upload = multer({storage: multer.memoryStorage()})
-const identifyUser = require('../middlewares/auth.middleware')
+const express = require('express');
+const {
+    createPostController,
+    getPostDetailsController,
+    likePostController,
+    getFeed,
+    deletePostController,
+    savePostController,
+    getSavedPosts,
+    getLikedPosts
+} = require('../controllers/post.controller');
+const { uploadImage } = require('../middlewares/upload.middleware');
+const { verifyJWT } = require('../middlewares/auth.middleware');
 
+const postRouter = express.Router();
 
-/* 
-POST /api/posts [protected] - is api pr wahi user req kr skta hai jinke paas ek valid token hoga
- -req.body = {caption, image-file}
- */
+postRouter.use(verifyJWT);
 
- postRouter.post('/',upload.single("image"),identifyUser, postController.createPostController)
+postRouter.post('/', uploadImage.single("image"), createPostController);
+postRouter.get('/feed', getFeed);
+postRouter.get('/saved', getSavedPosts);
+postRouter.get('/liked', getLikedPosts);
+postRouter.get('/:postId', getPostDetailsController);
+postRouter.post('/like/:postId', likePostController);
+postRouter.post('/save/:postId', savePostController);
+postRouter.post('/unsave/:postId', savePostController);
+postRouter.delete('/:postId', deletePostController);
 
-
- /* 
- GET /api/posts/ [protected]
- */
-
- postRouter.get('/',identifyUser, postController.getPostController )
-
-
- /* 
- GET /api/posts/details/:postid
- -return a detail about specific post with the id, also check weather the post belongs to the user that is request come from
- */
-postRouter.get('/details/:postId',identifyUser, postController.getPostDetailsController)
-
-/* 
-@route POST /api/posts/like/:postId
-@description like a post with the id provided in request params
-*/
-
-postRouter.post('/like/:postId', identifyUser, postController.likePostController)
-postRouter.post('/unlike/:postId', identifyUser, postController.unLikePostController)
-
-
-/* @route GET /api/post/feed
- @description  get add the post created in the db
- @access private
-*/
-postRouter.get('/feed', identifyUser, postController.getFeed)
-
- module.exports = postRouter
+module.exports = postRouter;

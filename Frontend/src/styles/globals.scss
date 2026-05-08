@@ -1,0 +1,139 @@
+@import "./variables";
+@import "./mixins";
+@import "./animations";
+@import "./breakpoints";
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+html {
+  background-color: $bg-cream;
+  color: $text-dark;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: radial-gradient(circle at 50% 0%, rgba(142, 45, 226, 0.15) 0%, rgba(9, 8, 13, 0) 70%), $bg-cream;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  color: $text-dark;
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+  font-weight: 600;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    color: $accent;
+    text-shadow: 0 0 10px rgba(247, 37, 133, 0.2);
+  }
+}
+
+// Reusable premium elements
+button, .button {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-sm;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.primary-button {
+  background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3);
+  padding: 0.85rem 1.75rem;
+  font-size: 0.95rem;
+  border-radius: $radius-md;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(142, 45, 226, 0.45);
+    background: linear-gradient(135deg, $primary-light 0%, $primary 100%);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.04);
+  color: $text-dark;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.85rem 1.75rem;
+  font-size: 0.95rem;
+  border-radius: $radius-md;
+  backdrop-filter: blur(8px);
+  
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(142, 45, 226, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+// Scrollbar customization
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: $bg-cream;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(142, 45, 226, 0.25);
+  border-radius: 10px;
+  border: 2px solid $bg-cream;
+  &:hover {
+    background: rgba(142, 45, 226, 0.45);
+  }
+}
+
+.spinner {
+  width: 42px;
+  height: 42px;
+  border: 3px solid rgba(255, 255, 255, 0.05);
+  border-top-color: $primary;
+  border-radius: 50%;
+  animation: spin 0.8s cubic-bezier(0.5, 0.1, 0.1, 0.5) infinite;
+}
+
+.loading-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  color: $text-muted;
+  font-size: 0.95rem;
+  background: $bg-cream;
+}

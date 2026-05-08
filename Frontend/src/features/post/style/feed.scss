@@ -1,79 +1,74 @@
-.feed-page{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+@import "../../../styles/breakpoints";
 
-    .feed{
-        
-        max-width: 300px;
-        width: 100%;
+.feed-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0 $spacing-sm;
+  padding-bottom: 80px; // space for bottom nav on mobile
+  
+  @include respond-to("desktop") {
+    padding-bottom: 40px;
+    padding-top: 24px;
+  }
 
-        .posts{
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 0.1rem;
+  .feed {
+    max-width: 520px;
+    width: 100%;
+    padding-top: $spacing-sm;
+    padding-bottom: $spacing-xl;
+
+    .feed-tabs {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 4px;
+      border-radius: 50px;
+      gap: 4px;
+      margin-bottom: $spacing-md;
+
+      .feed-tab {
+        padding: 0.6rem 1.4rem;
+        border-radius: 50px;
+        border: none;
+        background: transparent;
+        color: $text-muted;
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &.active {
+          background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+          color: white;
+          box-shadow: 0 4px 15px rgba(142, 45, 226, 0.35);
         }
 
-        .post{
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            background-color: #3d3737;
-            padding-inline: 0.5rem;
-            padding-block: 0.5rem;
-
-            .user{
-                display: flex;
-                gap: 0.5rem;
-                align-items: center;
-
-                .img-wrapper{
-                    border-radius: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    border: 2px solid rgba(255, 0, 0, 0);
-                    background: conic-gradient(from 45deg, rgb(255, 94, 0),orange,rgb(240, 31, 170),rgb(255, 94, 0)) border-box;
-                }
-
-                img{
-                    width: 2rem;
-                    aspect-ratio: 1/1;
-                    border-radius: 50%;
-                }
-            }
-
-            .icons{
-                display: flex;
-                justify-content: space-between;
-
-                .left{
-                    display: flex;
-                    gap: 0.75rem;
-                }
-
-                .like{
-                    color: red;
-                }
-
-                svg{
-                    width: 1rem;
-                    aspect-ratio: 1/1;
-                    color: white;
-                }
-                button{
-                    background-color: transparent;
-                    border: none;
-                    outline: none;
-                }
-            }
-
-            img{
-                width: 100%;
-            }
+        &:hover:not(.active) {
+          color: $text-dark;
+          background: rgba(255, 255, 255, 0.05);
         }
+      }
     }
+
+    .posts {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+    }
+
+    .feed-empty {
+      @include glass-card;
+      text-align: center;
+      padding: $spacing-xxl $spacing-lg;
+      color: $text-muted;
+      border-radius: $radius-lg;
+    }
+  }
 }

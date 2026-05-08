@@ -1,31 +1,44 @@
-const express = require('express')
-const userController = require('../controllers/user.controller')
-const identifyUser =  require('../middlewares/auth.middleware')
+const express = require('express');
+const {
+    followUserController,
+    unfollowUser,
+    requestList,
+    respondRequests,
+    getUserProfile,
+    updateProfileController,
+    searchUsers,
+    changePassword,
+    getFollowersList,
+    getFollowingList,
+    deleteAccount,
+    getSuggestedUsersController
+} = require('../controllers/user.controller');
+const { verifyJWT } = require('../middlewares/auth.middleware');
+const { uploadImage } = require('../middlewares/upload.middleware');
 
-const userRouter = express.Router()
+const userRouter = express.Router();
+userRouter.use(verifyJWT);
 
+// Suggestions
+userRouter.get('/suggestions', getSuggestedUsersController);
 
-/* 
-@route POST /api/users/follow/:userid
-@description follow a user
-@access Private
-*/
-userRouter.post('/follow/:username', identifyUser, userController.followUserController)
+// Follow/Relationship
+userRouter.post('/follow/:username', followUserController);
+userRouter.post('/unfollow/:username', unfollowUser);
+userRouter.get('/requests', requestList);
+userRouter.post('/requests/:id', respondRequests);
 
+// Profile
+userRouter.get('/profile/:username', getUserProfile);
+userRouter.patch('/update-profile', uploadImage.single("profileImage"), updateProfileController);
+userRouter.get('/search', searchUsers);
 
-/* 
-@route POST /api/users/unfollow/:userid
-@description follow a user
-@access Private
-*/
-userRouter.post('/unfollow/:username', identifyUser,userController.unfollowUser )
+// Followers/Following lists
+userRouter.get('/:username/followers', getFollowersList);
+userRouter.get('/:username/following', getFollowingList);
 
+// Settings
+userRouter.patch('/change-password', changePassword);
+userRouter.delete('/delete-account', deleteAccount);
 
-/* follow request ka list dekho */
-userRouter.get('/requests/', identifyUser,userController.requestList )
-
-/* follow request accept krna hai ya reject krna h */
-userRouter.post('/requests/:id', identifyUser, userController.respondRequests )
-
-
-module.exports = userRouter
+module.exports = userRouter;

@@ -1,0 +1,20 @@
+{
+  "name": "socialnest-workspace",
+  "version": "1.0.0",
+  "description": "SocialNest full-stack single-service deployment workspace",
+  "main": "Backend/server.js",
+  "scripts": {
+    "install-backend": "npm install --prefix Backend",
+    "install-frontend": "npm install --prefix Frontend",
+    "build-frontend": "npm run build --prefix Frontend",
+    "build": "npm run install-backend && npm run install-frontend && npm run build-frontend",
+    "start": "node Backend/server.js",
+    "seed": "npm run seed --prefix Backend",
+    "dev": "concurrently \"npm run dev --prefix Backend\" \"npm run dev --prefix Frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "author": "SocialNest Team",
+  "license": "ISC"
+}

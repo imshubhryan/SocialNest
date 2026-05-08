@@ -1,19 +1,116 @@
 @use "./button.scss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-*{
+// Theme variables
+$primary: #C2185B;
+$primary-light: #E91E63;
+$primary-dark: #880E4F;
+$bg-cream: #FFF5F0;
+$bg-card: #FFFFFF;
+$bg-input: #F5E6E0;
+$text-dark: #2D2D2D;
+$text-muted: #888;
+$text-light: #AAA;
+$border-light: rgba(194,24,91, 0.1);
+$shadow-card: 0 2px 20px rgba(194,24,91,0.08);
+$shadow-hover: 0 8px 30px rgba(194,24,91,0.15);
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 24px;
+$radius-full: 50%;
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,body,#root{
-
+html, body, #root {
   width: 100%;
+  min-height: 100vh;
 }
 
-html{
-    background-color: #1d1d1d;
-    color: rgb(253, 246, 246);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
+html {
+  background: $bg-cream;
+  color: $text-dark;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: linear-gradient(135deg, $bg-cream 0%, #FDE8E0 50%, #FCE4EC 100%);
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+  font-weight: 500;
+  transition: color 0.2s;
+  &:hover {
+    color: $primary-dark;
+  }
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(194,24,91,0.2);
+  border-radius: 10px;
+}
+
+// Loading spinner
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid $border-light;
+  border-top-color: $primary;
+  border-radius: $radius-full;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  color: $text-muted;
+  font-size: 0.9rem;
+}
+
+// Toast
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: $text-dark;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: $radius-md;
+  font-size: 0.85rem;
+  z-index: 1000;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

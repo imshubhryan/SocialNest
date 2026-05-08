@@ -1,0 +1,911 @@
+@import "../../shared/global.scss";
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+@import "../../../styles/breakpoints";
+
+// ─── PROFILE HEADER ──────────────────────────
+.profile-header {
+  display: flex;
+  gap: 40px;
+  padding: 30px 24px;
+  align-items: center;
+
+  @include respond-to("mobile") {
+    gap: 20px;
+    padding: 20px 16px;
+  }
+}
+
+.profile-avatar-section {
+  flex-shrink: 0;
+
+  .avatar-wrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: $radius-full;
+    background: linear-gradient(135deg, $primary 0%, $accent 100%);
+    padding: 3px;
+    box-shadow: 0 0 25px rgba(142, 45, 226, 0.35);
+
+    @include respond-to("mobile") {
+      width: 90px;
+      height: 90px;
+    }
+  }
+
+  .profile-large-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: $radius-full;
+    object-fit: cover;
+    border: 3px solid #14121e;
+  }
+}
+
+.profile-info-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-md;
+
+  .profile-username {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: $text-dark;
+    letter-spacing: -0.02em;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .profile-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+}
+
+// Buttons
+.btn-secondary {
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: $radius-md;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: $text-dark;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(142, 45, 226, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+.btn-icon {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  color: $text-muted;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-full;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: $text-dark;
+    border-color: rgba(142, 45, 226, 0.3);
+  }
+}
+
+.btn-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 24px;
+  border: none;
+  border-radius: $radius-md;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.follow {
+    background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3);
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(142, 45, 226, 0.45);
+    }
+  }
+
+  &.following {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: $text-muted;
+    &:hover {
+      background: rgba(142, 45, 226, 0.08);
+      border-color: rgba(142, 45, 226, 0.25);
+      color: $text-dark;
+    }
+  }
+}
+
+// Stats
+.profile-stats-row {
+  display: flex;
+  gap: 32px;
+  margin-bottom: $spacing-md;
+
+  .stat-item {
+    font-size: 0.95rem;
+    color: $text-muted;
+    transition: color 0.2s;
+
+    strong {
+      font-weight: 800;
+      color: $text-dark;
+      margin-right: 3px;
+    }
+  }
+
+  @include respond-to("mobile") {
+    gap: 20px;
+    font-size: 0.85rem;
+  }
+}
+
+// Bio
+.profile-bio-row {
+  .full-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: $text-dark;
+    margin-bottom: 4px;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .bio-text {
+    font-size: 0.9rem;
+    color: $text-muted;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+}
+
+// ─── PROFILE TABS ──────────────────────────
+.profile-tabs {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: $spacing-lg;
+
+  .tab-item {
+    padding: 16px 24px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: $text-light;
+    cursor: pointer;
+    border-top: 2px solid transparent;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &.active {
+      color: $text-dark;
+      border-top-color: $primary;
+    }
+
+    &:hover {
+      color: $text-dark;
+    }
+  }
+}
+
+// ─── POST GRID ──────────────────────────────
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 12px 0;
+  
+  @include respond-to("mobile") {
+    gap: 4px;
+    padding: 4px 0;
+  }
+}
+
+.grid-item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: $radius-md;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+
+  @include respond-to("mobile") {
+    border-radius: 4px;
+  }
+
+  .grid-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(9, 8, 13, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    .overlay-stats {
+      display: flex;
+      gap: 24px;
+      color: white;
+      font-weight: 800;
+      font-size: 1rem;
+
+      .stat {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+    }
+  }
+
+  &:hover {
+    border-color: rgba(142, 45, 226, 0.3);
+    .grid-image { transform: scale(1.08); }
+    .grid-overlay { opacity: 1; }
+  }
+}
+
+// ─── EDIT MODAL ──────────────────────────────
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 8, 13, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.edit-profile-modal {
+  @include glass-card(24px, 0.95);
+  border-radius: $radius-lg;
+  width: 90%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+  @include flex-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  h3 {
+    font-size: 1.25rem;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .close-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: $text-muted;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    @include flex-center;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover { color: $text-dark; background: rgba(255, 255, 255, 0.1); }
+  }
+}
+
+.edit-form {
+  padding: 24px;
+
+  .image-edit-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 12px;
+
+    .avatar-preview-wrapper {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border: 2px solid rgba(142, 45, 226, 0.3);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .camera-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        @include flex-center;
+        opacity: 0;
+        transition: opacity 0.2s;
+        border-radius: 50%;
+      }
+
+      &:hover .camera-overlay {
+        opacity: 1;
+      }
+    }
+
+    .text-btn {
+      background: none;
+      border: none;
+      color: $primary;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      &:hover { color: $accent; }
+    }
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: $text-muted;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: $radius-md;
+      font-size: 0.95rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all 0.25s;
+      background: rgba(255, 255, 255, 0.04);
+      color: $text-dark;
+
+      &:focus {
+        border-color: rgba(142, 45, 226, 0.45);
+        background: rgba(255, 255, 255, 0.07);
+      }
+    }
+
+    .char-count {
+      display: block;
+      text-align: right;
+      font-size: 0.75rem;
+      color: $text-light;
+      margin-top: 4px;
+    }
+  }
+}
+
+// Toggle Switch
+.switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.1);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+  }
+
+  input:checked + .slider {
+    background: $primary;
+  }
+  input:checked + .slider::before {
+    transform: translateX(20px);
+  }
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 8px;
+
+  .btn-cancel {
+    padding: 10px 20px;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: $radius-md;
+    cursor: pointer;
+    font-weight: 700;
+    color: $text-muted;
+    font-size: 0.85rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    &:hover { background: rgba(255,255,255,0.04); color: $text-dark; }
+  }
+
+  .btn-save {
+    padding: 10px 24px;
+    background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+    color: white;
+    border: none;
+    border-radius: $radius-md;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(142, 45, 226, 0.3);
+    transition: all 0.25s;
+    &:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(142, 45, 226, 0.45); }
+    &:disabled { opacity: 0.6; cursor: not-allowed; }
+  }
+}
+
+// ─── PROFILE PHOTO PREVIEW MODAL ─────────────
+.profile-preview-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 8, 13, 0.94);
+  backdrop-filter: blur(24px);
+  z-index: 3500;
+  @include flex-center;
+  cursor: pointer;
+}
+
+.profile-preview-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  cursor: default;
+
+  .enlarged-avatar-img {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.6);
+  }
+
+  .hold-tip {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+// ─── INSTAGRAM POST MODAL ───────────────────
+.post-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 8, 13, 0.94);
+  backdrop-filter: blur(20px);
+  z-index: 3000;
+  @include flex-center;
+}
+
+.post-modal-close-global {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  @include flex-center;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 3100;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+  }
+}
+
+.post-modal-container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  width: 90%;
+  max-width: 980px;
+  height: 85vh;
+  max-height: 720px;
+  background: #000;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.8);
+
+  @include respond-to("mobile") {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    overflow-y: auto;
+  }
+}
+
+.post-modal-media {
+  background: #050406;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .main-media-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .heart-burst-container {
+    position: absolute;
+    @include flex-center;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  @include respond-to("mobile") {
+    aspect-ratio: 1;
+    height: auto;
+  }
+}
+
+.post-modal-content {
+  display: flex;
+  flex-direction: column;
+  background: #09080d;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  height: 100%;
+  min-height: 0;
+
+  @include respond-to("mobile") {
+    border-left: none;
+    height: auto;
+  }
+}
+
+.content-header {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .user-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+
+      .username {
+        font-weight: 700;
+        color: white;
+        font-size: 0.9rem;
+      }
+
+      .location {
+        font-size: 0.75rem;
+        color: $text-muted;
+      }
+    }
+  }
+}
+
+.content-comments {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
+
+  .caption-comment, .comment-item {
+    display: flex;
+    gap: 12px;
+
+    .comment-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .comment-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      p {
+        font-size: 0.88rem;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.9);
+
+        .username {
+          font-weight: 750;
+          color: white;
+          margin-right: 8px;
+        }
+      }
+
+      .timestamp {
+        font-size: 0.75rem;
+        color: $text-muted;
+      }
+
+      .comment-meta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .btn-comment-delete {
+          background: none;
+          border: none;
+          color: rgba(255, 255, 255, 0.4);
+          cursor: pointer;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          transition: color 0.2s;
+
+          &:hover {
+            color: #f72585;
+          }
+        }
+      }
+    }
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    margin: 4px 0;
+  }
+
+  .comments-loading, .empty-comments {
+    text-align: center;
+    color: $text-muted;
+    font-size: 0.85rem;
+    padding: 30px 10px;
+  }
+}
+
+.content-actions {
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+  .action-buttons {
+    @include flex-between;
+    margin-bottom: 12px;
+
+    .left-actions {
+      display: flex;
+      gap: 16px;
+    }
+
+    .action-btn {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      &.liked {
+        color: #f72585;
+      }
+
+      &.saved {
+        color: #8e2de2;
+      }
+    }
+  }
+
+  .post-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .likes-count {
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: white;
+    }
+
+    .post-date {
+      font-size: 0.75rem;
+      color: $text-muted;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.content-form {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+  input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 0.9rem;
+    padding: 8px 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .btn-submit {
+    background: none;
+    border: none;
+    color: $primary;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    padding-left: 12px;
+    transition: color 0.2s;
+
+    &:hover:not(:disabled) {
+      color: $accent;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ─── STORY DELETE CONFIRMATION ──────────────
+.confirm-delete-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 20;
+  @include flex-center;
+}
+
+.confirm-delete-card {
+  background: #0d0c12;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  border-radius: $radius-md;
+  width: 85%;
+  max-width: 320px;
+  text-align: center;
+
+  h3 {
+    font-size: 1.15rem;
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: $text-muted;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 12px;
+
+    button {
+      flex: 1;
+      padding: 10px;
+      font-weight: 700;
+      border-radius: $radius-sm;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .btn-cancel {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: $text-muted;
+    }
+
+    .btn-delete {
+      background: #f72585;
+      color: white;
+      border: none;
+
+      &:disabled {
+        opacity: 0.6;
+      }
+    }
+  }
+}

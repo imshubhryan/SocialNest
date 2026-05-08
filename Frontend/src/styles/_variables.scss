@@ -1,0 +1,43 @@
+// Spacing System
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// Premium Color System (Curated Glassmorphic HSL/RGBA Palette)
+$primary: #8e2de2;          // Sleek Royal Violet
+$primary-light: #4a00e0;    // Vibrant Indigo
+$primary-dark: #3a00b0;     // Deep Midnight Indigo
+$accent: #f72585;           // Premium Neon Pink Accent
+$accent-glow: rgba(247, 37, 133, 0.15);
+
+// Backgrounds
+$bg-cream: #09080d;         // Dark Modern Premium Palette Background
+$bg-card: rgba(20, 18, 30, 0.45); // Dark Translucent Glass Card
+$bg-input: rgba(255, 255, 255, 0.05);
+$bg-input-hover: rgba(255, 255, 255, 0.08);
+
+// Text colors
+$text-dark: #f3f0f7;        // Premium off-white for text
+$text-muted: #9d9aa6;       // Modern gray-violet for captions/secondary
+$text-light: #6a6775;
+
+// Borders & Shadows
+$border-light: rgba(142, 45, 226, 0.15);
+$border-card: rgba(255, 255, 255, 0.06);
+$border-card-hover: rgba(142, 45, 226, 0.35);
+
+$shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+$shadow-hover: 0 12px 40px 0 rgba(142, 45, 226, 0.2);
+$shadow-glow: 0 0 20px rgba(142, 45, 226, 0.4);
+
+// Border Radius
+$radius-sm: 10px;
+$radius-md: 18px;
+$radius-lg: 28px;
+$radius-full: 50%;
+
+// Typography
+$font-family: 'Inter', system-ui, -apple-system, sans-serif;

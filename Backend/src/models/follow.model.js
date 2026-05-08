@@ -3,14 +3,16 @@ const mongoose = require("mongoose");
 const followSchema = new mongoose.Schema(
   {
     follower: {
-      type: String,
-
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+      required: true
     },
     followee: {
-      type:String,
-
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+      required: true
     },
-    status:{
+    status: {
       type: String,
       default: "pending",
       enum: {
@@ -24,8 +26,8 @@ const followSchema = new mongoose.Schema(
   },
 );
 
-followSchema.index({follower: 1, followee: 1}, {unique: true})
+followSchema.index({ follower: 1, followee: 1 }, { unique: true })
 
 const followModel = mongoose.model("follows", followSchema)
 
-module.exports =  followModel
+module.exports = followModel

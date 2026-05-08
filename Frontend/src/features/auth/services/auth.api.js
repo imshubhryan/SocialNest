@@ -1,40 +1,43 @@
-import axios from "axios";
+import api from "../../../lib/api";
 
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-  withCredentials: true,
-});
-
-export const register = async (username, email, password) => {
-  try {
-    const response = await api.post("/api/auth/register", {
-      username,
-      email,
-      password,
-    });
-    return response.data;
-  } catch (err) {
-    throw err
-  }
+export const register = async (username, email, password, confirmPassword) => {
+  const response = await api.post("/api/auth/register", {
+    username,
+    email,
+    password,
+    confirmPassword
+  });
+  return response.data;
 };
 
 export const login = async (username, password) => {
-  try {
-    const response = await api.post("/api/auth/login", {
-      username,
-      password,
-    });
-    return response.data;
-  } catch (err) {
-    throw err
-  }
+  const response = await api.post("/api/auth/login", { username, password });
+  return response.data;
 };
 
-export const getMe = async()=>{
-    try{
-        const response = await api.get('/api/auth/get-me')
-        return response.data
-    }catch(err){
-        throw err
-    }
-}
+export const forgotPassword = async (email) => {
+  const response = await api.post("/api/auth/forgot-password", { email });
+  return response.data;
+};
+
+export const resetPassword = async (token, password, confirmPassword) => {
+  const response = await api.post(`/api/auth/reset-password/${token}`, {
+    password, confirmPassword
+  });
+  return response.data;
+};
+
+export const getMe = async () => {
+  const response = await api.get("/api/auth/get-me");
+  return response.data;
+};
+
+export const logout = async () => {
+  const response = await api.post("/api/auth/logout");
+  return response.data;
+};
+
+export const resendVerification = async (email) => {
+  const response = await api.post("/api/auth/resend-verification", { email });
+  return response.data;
+};

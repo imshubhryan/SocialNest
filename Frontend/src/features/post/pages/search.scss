@@ -1,0 +1,119 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+@import "../../../styles/breakpoints";
+
+.search-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 $spacing-sm;
+  padding-bottom: 80px;
+
+  @include respond-to("desktop") {
+    padding-bottom: 40px;
+    padding-top: 24px;
+  }
+
+  .search-container {
+    width: 100%;
+    max-width: 520px;
+    margin-top: $spacing-sm;
+
+    .search-input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      @include glass-card(16px, 0.45);
+      border-radius: $radius-md;
+      padding: 0 1.2rem;
+      margin-bottom: $spacing-md;
+      transition: all 0.25s;
+
+      &:focus-within {
+        border-color: rgba(142, 45, 226, 0.45);
+        box-shadow: 0 0 20px rgba(142, 45, 226, 0.2);
+      }
+
+      .search-icon {
+        color: $text-muted;
+        flex-shrink: 0;
+      }
+
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 1.1rem 0;
+        font-size: 0.95rem;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        color: $text-dark;
+        width: 100%;
+        &::placeholder {
+          color: $text-light;
+        }
+      }
+    }
+
+    .search-results {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      .search-loading {
+        display: flex;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 2rem;
+        color: $text-muted;
+        font-size: 0.9rem;
+      }
+
+      .search-result-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.9rem 1.2rem;
+        @include glass-card(16px, 0.35);
+        border-radius: $radius-md;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+          border-color: rgba(142, 45, 226, 0.3);
+          box-shadow: $shadow-hover;
+          transform: translateX(4px);
+        }
+
+        img {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid rgba(142, 45, 226, 0.25);
+        }
+
+        .result-info {
+          display: flex;
+          flex-direction: column;
+
+          .result-username {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: $text-dark;
+            font-family: 'Outfit', sans-serif;
+          }
+          .result-bio {
+            font-size: 0.8rem;
+            color: $text-muted;
+            margin-top: 2px;
+          }
+        }
+      }
+    }
+  }
+}

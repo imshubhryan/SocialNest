@@ -1,0 +1,146 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+@import "../../../styles/breakpoints";
+
+.notifications-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 $spacing-sm;
+  padding-bottom: 80px;
+
+  @include respond-to("desktop") {
+    padding-bottom: 40px;
+    padding-top: 24px;
+  }
+
+  .notifications-container {
+    width: 100%;
+    max-width: 520px;
+    margin-top: $spacing-sm;
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: $text-dark;
+      margin-bottom: $spacing-md;
+      padding-left: 4px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .no-notifications {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 4rem 2rem;
+      @include glass-card(16px, 0.35);
+      border-radius: $radius-lg;
+
+      svg {
+        color: rgba(142, 45, 226, 0.25);
+      }
+      p {
+        color: $text-muted;
+        font-weight: 600;
+      }
+    }
+
+    .notifications-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      .notification-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.1rem;
+        @include glass-card(16px, 0.35);
+        border-radius: $radius-md;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+          border-color: rgba(142, 45, 226, 0.3);
+          box-shadow: $shadow-hover;
+          transform: translateY(-2px);
+        }
+
+        &.unread {
+          background: rgba(142, 45, 226, 0.08);
+          border-color: rgba(142, 45, 226, 0.25);
+          box-shadow: 0 4px 15px rgba(142, 45, 226, 0.15);
+        }
+
+        .notif-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          flex-shrink: 0;
+
+          &.like {
+            background: rgba(247, 37, 133, 0.12);
+            color: $accent;
+            border: 1px solid rgba(247, 37, 133, 0.2);
+          }
+          &.comment {
+            background: rgba(142, 45, 226, 0.12);
+            color: $primary;
+            border: 1px solid rgba(142, 45, 226, 0.2);
+          }
+          &.follow_request, &.follow_accepted {
+            background: rgba(79, 70, 229, 0.12);
+            color: #4F46E5;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+          }
+        }
+
+        .notif-avatar {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          object-fit: cover;
+          flex-shrink: 0;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .notif-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+
+          p {
+            font-size: 0.9rem;
+            color: $text-muted;
+            line-height: 1.4;
+            
+            strong {
+              font-weight: 700;
+              color: $text-dark;
+              font-family: 'Outfit', sans-serif;
+            }
+          }
+
+          .notif-time {
+            font-size: 0.75rem;
+            color: $text-light;
+          }
+        }
+
+        .notif-post-thumb {
+          width: 46px;
+          height: 46px;
+          border-radius: 8px;
+          object-fit: cover;
+          flex-shrink: 0;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}
