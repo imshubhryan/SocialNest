@@ -5,7 +5,7 @@
   "main": "Backend/server.js",
   "scripts": {
     "install-backend": "npm install --prefix Backend",
-    "install-frontend": "npm install --prefix Frontend",
+    "install-frontend": "npm install --include=dev --prefix Frontend",
     "build-frontend": "npm run build --prefix Frontend",
     "build": "npm run install-backend && npm run install-frontend && npm run build-frontend",
     "start": "node Backend/server.js",
